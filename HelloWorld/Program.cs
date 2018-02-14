@@ -27,7 +27,10 @@ namespace HelloWorld
             string usersName;
             //paprasam konsolei ievadīt tekstu, saglabājam rezultātu mainīgo
             usersName = Console.ReadLine();
-            Console.WriteLine("Labdien," + usersName + "!"); //"Labdien, Marcis"
+            string age;
+            Console.WriteLine("Please enter your age:");
+            age = Console.ReadLine();
+            Console.WriteLine("Labdien," + usersName + "!" + "Tavs vecums ir " + age); //"Labdien, Marcis"
             Console.ReadLine();
         }
        
