@@ -10,10 +10,64 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
-            CalculateCircleArea();
+            string usersInput = "";
+            while (true) 
+            {
+                Console.WriteLine("Please choose action");
+                Console.WriteLine("a - CalculateCircleArea circle area");
+                Console.WriteLine("c - count two numbers together");
+                usersInput = Console.ReadLine();
+                //ja atbilde ir a, tad izsaukt apļa funkciju
+                //ja atbilde ir c, tad izsaukt skaitīšanas funkciju
+                //Visos citos gadījumos parādīt kļūdas paziņojumu
+
+                if (usersInput == "a")
+                {
+                    CalculateCircleArea();
+                }
+
+                else if (usersInput == "c")
+                {
+                    CountTwoNumbers();
+                }
+
+                else if (usersInput == "d")
+                {
+                    DoesTheNumberDivide();
+                }
+                else if (usersInput == "x")
+                {
+                    break;
+                }
+                                
+                else
+                {
+                    Console.WriteLine("sorry, did not understand");
+                }
+            }
+           
+
+
+            
             //ctrl  + K un tad D (Lai sakartotu kodu pareizi)
             //Saskaitīt divus skaitļus
-            CountTwoNumbers();
+            
+        }
+
+        static void DoesTheNumberDivide()
+        {
+            double dalāmais = GetNumberFromUser("Lūdzu ievadiet dalāmo");
+            double dalītājs = GetNumberFromUser("Lūdzu ievadiet dalītāju");
+            double modulo = dalāmais % dalītājs;
+            if (modulo == 0)
+            {
+                Console.WriteLine("Šie skaitļi dalās");
+            }
+
+            else
+            {
+                Console.WriteLine("nedalās");
+            }
         }
 
         static void CalculateCircleArea()
@@ -54,7 +108,7 @@ namespace Calculator
             }
             return parsedNumber;
         }
-
+        //void nozīmē to, ka šī funkcija rezultātā neko neatgriež tajā vietā kur tā izsaukta
         static void CountTwoNumbers()
         {
             //Pirmais skaitlis
@@ -72,6 +126,8 @@ namespace Calculator
             Console.WriteLine("Rezultāts " + result);
             Console.ReadLine();
         }
+
+        
        
     }
 }
