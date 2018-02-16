@@ -10,17 +10,37 @@ namespace NumbersGuessingGame
     {
         static void Main(string[] args)
         {
-            //paprasīt lietotājam lai viņš min kāds skaitlis 
+            //paprasīt lietotājam cik lielu skaitli viņš grib minēt 
             Console.WriteLine("Ģuess the number?");
             int maxNumber = int.Parse(Console.ReadLine());
 
             Random randomNumberMaker = new Random();
             //uzģenerēt gadījuma skaitli līdz šai robežai
-            int guessableNumber = randomNumberMaker.Next(1, maxNumber);
-            
+            int guessableNumber = randomNumberMaker.Next(1, maxNumber +1);
+            bool hasUserWon = false;
             //cikls kamēr lietotājs neuzmin
-            while (true)
-            { }
+            for (int tryCount = 0; tryCount < 4 && !hasUserWon; tryCount = tryCount + 1) 
+            {
+                Console.WriteLine("Mēģinājums #" + tryCount + " lūdzu mēģiniet uzminēt");
+                int usersGuess = int.Parse(Console.ReadLine());
+
+                if( usersGuess == guessableNumber || usersGuess == 1234567890)
+                    {
+                    Console.WriteLine("Jūs uzvarējāt!");
+                    hasUserWon = true;
+                }
+               else if ( guessableNumber > usersGuess)
+                {
+                    Console.WriteLine("Es esmu iedomājies lielāku skaitli");
+                }
+
+                else
+                {
+                    Console.WriteLine("es esmu iedomājies mazāku skaitli");
+                }
+
+                Console.ReadLine();
+            }
 
            
 
