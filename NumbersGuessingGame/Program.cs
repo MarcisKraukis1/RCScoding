@@ -39,10 +39,14 @@ namespace NumbersGuessingGame
                     Console.WriteLine("es esmu iedomājies mazāku skaitli");
                 }
 
-                Console.ReadLine();
+               
             }
 
-           
+            if (hasUserWon == false)
+            {
+                Console.WriteLine("Jūs zaudējāt! Mans iedomātais skaitlis bija " + guessableNumber);
+                Console.ReadLine();
+            }
 
 
 
