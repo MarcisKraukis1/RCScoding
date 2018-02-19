@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,12 +34,54 @@ namespace ConsoleApp1
             //Skaitītājs = skaitītājs +1; Ir tas pats, kas skaitītājs +=1
             //Ir tas pats, kas skaitītājs++
             //i ir saīsinājums no vārda index(Latviski - skaitītājs)
-            for (int skaititajs = 0; skaititajs < todoEntries.Count; skaititajs = skaititajs + 1)
+            for (int i = 0; i < todoEntries.Count; i++)
             {
-                Console.WriteLine("Your todo list entry is " + todoEntries[skaititajs]);
+                Console.WriteLine((i + 1) + ". " + todoEntries[i]);
+                Console.WriteLine();
             }
             
         }
+
+        public void DeleteTodo(int indexOfTodo)
+        {
+            //Neļāut izvēlēties kārtas nummuru, kurš neeksistē
+            if (indexOfTodo >= this.todoEntries.Count)
+            {
+                //Ja sarakstā 3 indeksi, tad pēdējais indekss ir 2
+                Console.WriteLine("Tāds ieraksts neeksistē");
+                return;
+            }
+            todoEntries.RemoveAt(indexOfTodo);
+        }
+        
+                // Lai izdzēstu visu listu
+        public void DeleteAllTodos()
+
+        {
+            todoEntries.Clear();
+        }
+
+        public void SaveToFile()
+        {
+            for (int i = 0; i < todoEntries.Count; i++)
+                //CTRL + .
+                File.AppendAllText(
+                    @"C:\Users\Dators\Documents\ToDoApplicationSetings\todos.txt",
+                    todoEntries[i] + "\r\n");
+        }
+        
+        public void LoadFromFile()
+        {
+            string[] allLinesFromFile = File.ReadAllLines(@"C:\Users\Dators\Documents\ToDoApplicationSetings\todos.txt");
+            foreach (string listEntry in allLinesFromFile)
+            {
+                todoEntries.Add(listEntry);
+            }
+            
+           
+        }
+
+
 
     }
 }
