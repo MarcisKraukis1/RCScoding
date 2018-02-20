@@ -18,7 +18,9 @@ namespace ConsoleApp1
                 Console.WriteLine("p - parādīt");
                 Console.WriteLine("d - dzēst");
                 Console.WriteLine("da - dzēst visu");
+                Console.WriteLine("s - saglabāt");
                 Console.WriteLine("l - Ielādēt toDoList");
+                Console.WriteLine("at - Atzīmējam uzdevumu kā izdarītu");
                 string usersInput = Console.ReadLine();
                 switch (usersInput)
                 {
@@ -54,6 +56,19 @@ namespace ConsoleApp1
                     case "l":
                         list.LoadFromFile();
                         break;
+
+                    case "at":
+                        //Atzīmējam uzdevumu kā izdarītu
+                        Console.WriteLine("Lūdzu ievadi paveiktā uzdevuma nummuru");
+                        list.ShowAllTodos();
+                        int doneTodoIndex = int.Parse(Console.ReadLine());
+                        list.MarkTodosAsDone(doneTodoIndex - 1);
+                        break;
+                        //Default tas pats, kas ifam else komanda
+                    default:
+                        Console.WriteLine("Neatpazīstama komanda");
+                        break;
+
 
                         //implementējam ielādi no faila izmantojot funkciju
                         //File.ReadAllLines(path)

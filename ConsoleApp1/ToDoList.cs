@@ -13,19 +13,21 @@ namespace ConsoleApp1
         //konstruktors nekad neko neatgriež un vienmēr saucas tāpat kā klase
         public TodoList()
         {
-            todoEntries = new List<string>();
+            todoEntries = new List<TodoListEntry>();
         }
-        List<string> todoEntries;
+        List<TodoListEntry> todoEntries;
 
         public void AddNewTodo(string task)
         {
-            
-            
             //Ja vizuālā studija nevar atrast klasi,
             //tad uzspiežam uz klases nosaukuma un
             //piespiežamCtrl + .
             Console.WriteLine("Uzdevums pievienots:" + task);
-            todoEntries.Add(task);
+            TodoListEntry usersTodo = new TodoListEntry();
+            //Jaunizveidotajam uzdevumam piešķiram nosaukumu, ko ievadīs lietotājs
+            usersTodo.Name = task;
+            //Pievienojam jaunu uzdevumu uzdevumu sarakstam
+            todoEntries.Add(usersTodo);
         }
 
         public void ShowAllTodos()
@@ -34,9 +36,18 @@ namespace ConsoleApp1
             //Skaitītājs = skaitītājs +1; Ir tas pats, kas skaitītājs +=1
             //Ir tas pats, kas skaitītājs++
             //i ir saīsinājums no vārda index(Latviski - skaitītājs)
+
             for (int i = 0; i < todoEntries.Count; i++)
             {
-                Console.WriteLine((i + 1) + ". " + todoEntries[i]);
+                //Izvada kārtas nummuru un uzdevuma nosaukumu, bet bez enter galā
+                Console.Write((i + 1) + ".  " + todoEntries[i].Name);
+                //Ja uzdevums ir pabeigts (IsCompleted == true)
+                if (todoEntries[i].IsCompleted)
+                {
+                    //TAd uzrakstam uz ekrāna "Done(bet bez enter)
+                    Console.Write(" Done");
+                }
+                //Nospiežam enter
                 Console.WriteLine();
             }
             
@@ -60,28 +71,58 @@ namespace ConsoleApp1
         {
             todoEntries.Clear();
         }
-
+        string pathToDoFile = @"C:\Users\Dators\Documents\ToDoApplicationSetings\todos.txt";
         public void SaveToFile()
-        {
+        {    
+            File.Delete(pathToDoFile);
             for (int i = 0; i < todoEntries.Count; i++)
+            {
                 //CTRL + .
-                File.AppendAllText(
-                    @"C:\Users\Dators\Documents\ToDoApplicationSetings\todos.txt",
-                    todoEntries[i] + "\r\n");
+                string nameOfTodo = todoEntries[i].Name;
+                File.AppendAllText(pathToDoFile, nameOfTodo + "\r\n");
+                bool isCompleted = todoEntries[i].IsCompleted;
+                File.AppendAllText(pathToDoFile, isCompleted + "\r\n");
+            }
         }
+
         
         public void LoadFromFile()
         {
-            string[] allLinesFromFile = File.ReadAllLines(@"C:\Users\Dators\Documents\ToDoApplicationSetings\todos.txt");
-            foreach (string listEntry in allLinesFromFile)
+            //ja funkcija, kas pārbauda vai fails eksistē atgriež false
+            if(!File.Exists(pathToDoFile))
             {
-                todoEntries.Add(listEntry);
+                //tad pārtraucam loadFromFile un atgriežamies
+                return;
+            }
+            //Citādāk izpilda šo funkciju
+            string[] allLinesFromFile = File.ReadAllLines(pathToDoFile);
+
+            //dodamies cauri sarakstam ar teksta rindām, kas ir ielēdētas no faila
+            for (var index = 0; index < allLinesFromFile.Length; index +=2 )
+            {
+                string listEntry = allLinesFromFile[index];
+                //listEntry mainīgajā ir ieraksīta viena teksta rinda no faila
+                //Izveidojam jaunu uzdevumu
+                TodoListEntry fileTodo = new TodoListEntry();
+                //Uzdevumam uzdodam par nosaukumu teksta rindu, kas nolasīta no faila
+                fileTodo.Name = listEntry;
+                //Uzdevumam uzdodam par izpildes stāvokli vērtību, kas nolasīta no faila
+                fileTodo.IsCompleted = bool.Parse(allLinesFromFile[index + 1]);
+                //Jaunizveidoto uzdevumu pievienojam kopējo uzdevumu sarakstam
+                this.todoEntries.Add(fileTodo);
+                
             }
             
            
         }
 
+        internal void MarkTodosAsDone(int doneTodoIndex)
+        {
+            //todoEntries[donetodoIndex].IsCompleted = true; Šis ir tas pats tikai vienā rindā
+            TodoListEntry doneTodo = todoEntries[doneTodoIndex];
+            doneTodo.IsCompleted = true;
 
+        }
 
     }
 }
