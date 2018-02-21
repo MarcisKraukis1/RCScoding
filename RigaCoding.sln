@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumbersGuessingGame", "Numb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoListApp", "ConsoleApp1\TodoListApp.csproj", "{CDF3767F-3619-4214-A144-9F3C212B8B12}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnglishDictionary", "ConsoleApp2\EnglishDictionary.csproj", "{0472E2DB-2095-4BA2-A63A-002236A3D6F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvertsWebApp", "AdvertsWebApp\AdvertsWebApp.csproj", "{A2B707FF-A45D-48DD-B60B-7803260447C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{CDF3767F-3619-4214-A144-9F3C212B8B12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDF3767F-3619-4214-A144-9F3C212B8B12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDF3767F-3619-4214-A144-9F3C212B8B12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0472E2DB-2095-4BA2-A63A-002236A3D6F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0472E2DB-2095-4BA2-A63A-002236A3D6F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0472E2DB-2095-4BA2-A63A-002236A3D6F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0472E2DB-2095-4BA2-A63A-002236A3D6F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2B707FF-A45D-48DD-B60B-7803260447C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2B707FF-A45D-48DD-B60B-7803260447C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2B707FF-A45D-48DD-B60B-7803260447C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2B707FF-A45D-48DD-B60B-7803260447C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
