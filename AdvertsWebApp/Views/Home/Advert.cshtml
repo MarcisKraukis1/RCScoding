@@ -1,0 +1,23 @@
+﻿@model AdvertsWebApp.Models.Advert
+
+@if (Model == null)
+{
+    <h1>Sludinājums nav atrasts</h1>
+}
+else
+{
+    <h2>Sludinājums</h2>
+    <h3>@Model.Name</h3>
+    <div>
+        <lable>Cena:</lable>
+        <span>@Model.Price</span>
+    </div>
+    <div>
+        <lable> Izveidošanas laiks:</lable>
+        <span>@Model.CreationTime</span>
+    </div>
+    <p> @Model.AdvertText</p>
+
+}
+@Html.ActionLink("Atgriezties pie sludinājumiem", "Index")
+

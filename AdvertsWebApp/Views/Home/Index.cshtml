@@ -1,3 +1,12 @@
-﻿
-<h2>Mārča Index</h2>
+﻿<!-- Šajā vietā norādam šim failam, kāds modelis tiks iedots kad šo failu mēģinās uzģenirēt-->
+@model List<AdvertsWebApp.Models.Advert>
+
+<!--Šajā vietā izmantojot foreach ciklu, uzģenerēsim HTML kodu priekš katra sludinājuma-->
+@foreach(var ad in Model)
+{
+    <p>@ad.Name  - @ad.AdvertText (@ad.Price  eur)</p> <a href="/Home/Advert?advertId=@ad.AdvertId">Atvērt sludinājumu</a>
+}
+
+
+
 
