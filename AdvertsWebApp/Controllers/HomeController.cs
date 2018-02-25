@@ -13,40 +13,25 @@ namespace AdvertsWebApp.Controllers
 
         public HomeController()
         {
-            adverts = new List<Advert>();
-            Advert ad = new Advert();
-            ad.AdvertId = 1;
-            ad.Name = "BMW";
-            ad.AdvertText = "Šis ir labs BMW";
-            ad.Price = 2000.95;
-            ad.CreationTime = DateTime.Now;
-
-            adverts = new List<Advert>();
-            Advert homeAd = new Advert();
-            homeAd.AdvertId = 2;
-            homeAd.Name = "māja";
-            homeAd.AdvertText = "liela māja";
-            homeAd.Price = 12000;
-            homeAd.CreationTime = new DateTime(1999, 12, 31);
-
-            adverts.Add(ad);
-            adverts.Add(homeAd);
-
+            advertDb = new AdvertDb();    
         }
-              private List<Advert> adverts;
+
+        private List<Advert> adverts;
+        private AdvertDb advertDb;
+        
         //.šī funkjcija tiek izsaukta, kad tiek pieprasīts weblapas bāzes ceļš
         // GET: Home
         public ActionResult Index()
         {
             //Izsaucam view funkciju, lai uzģenerētu html rezultātu
             //no mūsu index.cshtml faila, tajā iekšā izmantojot, kas pieejami adverts sarakstā
-            return View(adverts);
+            return View(advertDb.Adverts.ToList());
         }
 
         public ActionResult Advert(int advertId)
         {
             //Apskatam katru sludinājumu sarakstā
-            foreach(var ad in adverts)
+            foreach(var ad in advertDb.Adverts)
             {
                 //JA sludinājuma id ir tāds pats, kā tas, ko lietotājs pieprasījis
                 if(ad.AdvertId == advertId)
@@ -57,7 +42,21 @@ namespace AdvertsWebApp.Controllers
             }
             return View();
         }
-      
+
+        public ActionResult CreateAdvert()
+        {
+            return View();
+        }
+        //šis atribūts norāda, ka šo funkciju iespējams izsaukt arPost vaicājumu
+        //tas ir, iespējams atsūtit viņai datus no formas
+      [HttpPost]
+        public ActionResult CreateAdvert(Advert advert)
+        {
+            advert.CreationTime = DateTime.Now;
+            advertDb.Adverts.Add(advert);
+            advertDb.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
     
 }
