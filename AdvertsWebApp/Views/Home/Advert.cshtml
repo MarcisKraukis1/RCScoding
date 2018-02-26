@@ -17,7 +17,11 @@ else
         <span>@Model.CreationTime</span>
     </div>
     <p> @Model.AdvertText</p>
-
+    <!--
+    <a href="Home/EditAdvert?advertId=5">rediģēt sludinājumu<a/>
+        -->
+    @Html.ActionLink("Rediģēt sludinājumu", "EditAdvert", "Home", new { advertId = Model.AdvertId }, null)
 }
+
 @Html.ActionLink("Atgriezties pie sludinājumiem", "Index")
 
